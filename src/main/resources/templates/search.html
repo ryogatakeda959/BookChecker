@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th=th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>検索画面</title>
+</head>
+<body>
+<h1>本棚検索</h1>
+ <form th:action="@{/search}" th:object="${searchModel}"
+        th:method="post">
+        <div>
+            書籍名：<input type="text" th:field="*{bookName}" size="40" />
+        </div>
+        <br />
+        <div>
+            <input type="submit" value="検索" style="width: 100px;" />
+        </div>
+        <br />
+    </form>
+    
+    <div th:if="${searchinfo}">
+        <table th:object="${searchinfo}">
+            <tr>
+                <th class="cell_title">書籍</th>
+                <td th:text="*{bookName}"></td>
+            </tr>
+            <tr>
+                <th class="cell_title">著者</th>
+                <td th:text="*{author}"></td>
+            </tr>
+            <tr>
+                <th class="cell_title">登録日時</th>
+                <td th:text="*{registDate}"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
